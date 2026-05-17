@@ -3,11 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Midnight Surface</title>
+    <title>Interactive Media Assignment 2</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
+    /* Space Grotesk was chosen to reinforce the clean digital aesthetic
+      of the interface while still feeling expressive and slightly experimental.
+      Its sharp geometric forms pair effectively with the monochromatic
+      album artwork and glowing interface elements, helping the player
+      feel more cohesive as a contemporary electronic music experience. */
     <link
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap"
       rel="stylesheet"
@@ -23,7 +28,6 @@
     <header>
       <p class="album-label">Interactive Music Album</p>
       <h1>Midnight Surface</h1>
-      <p class="artist-name">Ambient Electronic Collection</p>
     </header>
 
     <main class="container">
@@ -34,7 +38,6 @@
       Photo by Tobias Reich on Unsplash
       https://unsplash.com/photos/grayscale-photo-of-city-buildings-hhjlQb8KGeE
 
-      Design rationale:
       This artwork was selected because the foggy monochrome cityscape creates
       a cinematic and atmospheric mood that matches the ambient electronic
       feeling of the album tracks. The soft lighting, reflective architecture,
@@ -62,7 +65,13 @@
             />
 
           </div>
-
+          
+          <!-- The playback controls were reorganized multiple times during development.
+              Earlier versions separated controls into different sections of the page,
+              but this reduced usability and made the interface feel disconnected.
+              The final arrangement groups playback, timing, volume, playlist,
+              and playback modes into a single compact player bar inspired by
+              modern streaming platforms. -->
           <div class="player-bar">
 
             <button id="prev-btn">⏮</button>
@@ -84,6 +93,12 @@
               <span id="track-artist">p-hase</span>
             </div>
 
+          <!-- The favourite feature originally existed as a large standalone button
+              with descriptive text. 
+              During refinement the interaction was simplified into a smaller icon-only
+              button integrated directly into the player controls.
+              This change reduced interface clutter and better matched the minimalist
+              streaming-inspired visual language used throughout the project. -->
             <button id="favorite-btn">♡</button>
 
             <div class="progress-bar" id="progress-bar">
@@ -109,6 +124,11 @@
           </div>
         </section>
 
+        <!-- The track list was intentionally reduced in size and pushed lower
+            within the layout so it behaves more like secondary navigation
+            instead of competing visually with the album artwork.
+            This hierarchy helps guide the user toward the listening experience
+            first before interacting with playlist controls. -->
         <section class="track-panel">
 
           <h2>Tracks</h2>

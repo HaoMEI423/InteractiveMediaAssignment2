@@ -95,6 +95,10 @@ function setProgress(event) {
   audio.currentTime = (clickX / width) * duration;
 }
 
+/* Smooth fade transitions were added between tracks and artwork changes
+to avoid abrupt visual jumps when switching songs.
+This decision supports the ambient electronic theme by making the
+experience feel slower, calmer, and more cinematic. */
 function changeTrack(track) {
   tracks.forEach((item) => {
     item.classList.remove("active-track");
@@ -223,6 +227,12 @@ function toggleFavorite() {
   }
 }
 
+/* An earlier concept explored a draggable and reorderable playlist system.
+This idea was later rejected because it introduced unnecessary complexity
+for the scope of the assignment and distracted from the album listening
+experience itself.
+The final popup design focuses on lightweight navigation and maintaining
+a cleaner interaction flow. */
 function togglePlaylist() {
 
   if (playlistPopup.style.display === "flex") {
@@ -258,6 +268,4 @@ function toggleMute() {
   }
 
 }
-
-// ChatGPT assisted early brainstorming and debugging.
-// Final interaction design decisions and styling were manually developed.
+// ChatGPT assisted debugging.

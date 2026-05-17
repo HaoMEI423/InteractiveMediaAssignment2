@@ -20,6 +20,7 @@ body {
 header {
   text-align: center;
   padding: 3rem 2rem;
+  animation: fadeIn 1s ease;
 }
 
 .album-label {
@@ -35,16 +36,23 @@ header h1 {
   margin-bottom: 0.5rem;
 }
 
-.artist-name {
-  color: var(--secondary-text);
-}
-
 .container {
   width: 90%;
   max-width: 1400px;
   margin: auto;
 }
 
+/* 
+The layout originally placed the track list on the left side,
+closer to traditional music software interfaces. 
+
+However, during development the track list was moved to the right
+to allow the album artwork and playback area to become the primary
+visual focus when users first enter the page.
+
+This decision better supports the immersive and atmospheric feeling
+of the ambient electronic album context.
+*/
 .album-layout {
   display: grid;
   grid-template-columns: 1.6fr 0.4fr;
@@ -65,8 +73,16 @@ header h1 {
   margin-left: 5%;
 }
 
-/* The animated vinyl creates interaction feedback connected directly
-to music playback state. */
+/*
+The spinning vinyl record was added to visually reinforce playback state.
+
+This interaction was inspired by physical turntables and modern
+music streaming interfaces that use motion feedback to make audio
+feel more tangible and immersive.
+
+The animation speed was intentionally reduced slightly compared to
+real vinyl rotation to maintain the relaxed mood of the album.
+*/
 .vinyl-record {
   position: absolute;
   width: 580px;
@@ -87,6 +103,18 @@ to music playback state. */
   opacity: 0.9;
 }
 
+
+/*
+The album artwork was designed to behave almost like a physical object
+instead of a static image. 
+
+Small rotations, glow effects, and scaling transitions were added
+to make playback feel more alive and responsive.
+
+A more aggressive animation system was tested earlier in development,
+but it distracted too heavily from the calm listening experience,
+so the final version uses slower and softer motion.
+*/
 .album-art {
   width: 500px;
   height: 500px;
@@ -201,6 +229,10 @@ to music playback state. */
   transition: width 0.2s linear;
 }
 
+.progress-bar:hover {
+  transform: scaleY(1.2);
+}
+
 #time-display {
   min-width: 50px;
   color: var(--secondary-text);
@@ -298,9 +330,14 @@ body::after {
 
 .active-track {
   background: rgba(198, 166, 255, 0.12);
+  border-left: 3px solid var(--accent-color);
 }
 
-/* Responsive adjustments improve usability for smaller screens */
+/* Responsive adjustments were added to preserve the immersive feeling
+of the interface on smaller screens.
+The layout collapses vertically on mobile devices so the artwork
+remains visually dominant while still allowing comfortable access
+to track navigation and playback controls. */
 @media (max-width: 1000px) {
   .album-layout {
     grid-template-columns: 1fr;
