@@ -1,0 +1,478 @@
+:root {
+  --background-color: #0d0d12;
+  --surface-color: rgba(255, 255, 255, 0.05);
+  --text-color: #f4f4f4;
+  --secondary-text: #9f9fb0;
+  --accent-color: #c6a6ff;
+  --hover-color: rgba(255, 255, 255, 0.08);
+  --border-color: rgba(255, 255, 255, 0.08);
+}
+
+body {
+  font-family: "Space Grotesk", sans-serif;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, #23233a, #0d0d12 60%);
+  color: var(--text-color);
+  overflow-x: hidden;
+}
+
+header {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.album-label {
+  color: var(--accent-color);
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+header h1 {
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
+}
+
+.artist-name {
+  color: var(--secondary-text);
+}
+
+.container {
+  width: 90%;
+  max-width: 1400px;
+  margin: auto;
+}
+
+.album-layout {
+  display: grid;
+  grid-template-columns: 1.6fr 0.4fr;
+  min-height: 70vh;
+}
+
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.artwork-wrapper {
+  position: relative;
+  width: 620px;
+  height: 620px;
+  margin-left: 5%;
+}
+
+/* The animated vinyl creates interaction feedback connected directly
+to music playback state. */
+.vinyl-record {
+  position: absolute;
+  width: 580px;
+  height: 580px;
+  border-radius: 50%;
+  right: -120px;
+  top: 10px;
+
+  background:
+    repeating-radial-gradient(
+      circle,
+      #101010 0px,
+      #101010 5px,
+      #1e1e1e 7px,
+      #101010 9px
+    );
+
+  opacity: 0.9;
+}
+
+.album-art {
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 1.5rem;
+  position: relative;
+  z-index: 2;
+
+  box-shadow: 0 0 60px rgba(198, 166, 255, 0.2);
+
+  /* Smooth visual transitions improve the feeling of continuity
+  when changing between tracks. */
+  transition:
+    transform 0.6s ease,
+    opacity 0.6s ease,
+    box-shadow 0.6s ease;
+}
+
+.album-art:hover {
+  transform: scale(1.03);
+}
+
+.spin {
+  animation:
+    spinVinyl 2.8s linear infinite,
+    vinylPulse 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes vinylPulse {
+  from {
+    filter: brightness(1);
+    transform: scale(1);
+  }
+
+  to {
+    filter: brightness(1.25);
+    transform: scale(1.03);
+  }
+}
+
+.player-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  z-index: 20;
+
+  width: 90%;
+
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+
+  border: 1px solid var(--border-color);
+  border-radius: 1.5rem;
+
+  padding: 1rem 1.2rem;
+}
+
+#play-pause-btn {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+
+  background: var(--accent-color);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: 0.3s ease;
+}
+
+#play-pause-btn:hover {
+  transform: scale(1.08);
+}
+
+.song-info {
+  min-width: 120px;
+}
+
+.song-info p {
+  font-weight: 500;
+}
+
+.song-info span {
+  color: var(--secondary-text);
+  font-size: 0.9rem;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+}
+
+.progress-bar span {
+  display: block;
+  width: 0;
+  height: 100%;
+
+  background: linear-gradient(to right, #c6a6ff, white);
+
+  transition: width 0.2s linear;
+}
+
+#time-display {
+  min-width: 50px;
+  color: var(--secondary-text);
+}
+
+/* Floating blurred background shapes create motion behind the artwork
+without distracting too heavily from the album itself. */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(120px);
+  z-index: -1;
+  opacity: 0.25;
+
+  animation: floatingGlow 12s ease-in-out infinite alternate;
+}
+
+body::before {
+  background: #7b4dff;
+  top: -100px;
+  left: -100px;
+}
+
+body::after {
+  background: #3ba4ff;
+  bottom: -100px;
+  right: -100px;
+  animation-delay: 4s;
+}
+
+@keyframes floatingGlow {
+  from {
+    transform: translateY(0px) translateX(0px);
+  }
+
+  to {
+    transform: translateY(40px) translateX(20px);
+  }
+}
+
+.track-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+
+  padding: 5rem 1rem 1rem;
+  max-width: 320px;
+}
+
+.track-panel h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.track {
+  display: grid;
+  grid-template-columns: 50px 1fr auto;
+
+  align-items: center;
+
+  gap: 1rem;
+
+  padding: 1.3rem;
+
+  border-radius: 1rem;
+
+  background: rgba(255, 255, 255, 0.03);
+
+  cursor: pointer;
+
+  transition:
+    background 0.4s ease,
+    transform 0.4s ease,
+    color 0.4s ease;
+}
+
+.track-duration {
+  justify-self: end;
+  color: var(--secondary-text);
+}
+
+.track:hover {
+  background: var(--hover-color);
+  transform: translateX(10px);
+}
+
+.track span {
+  color: var(--secondary-text);
+}
+
+.active-track {
+  background: rgba(198, 166, 255, 0.12);
+}
+
+/* Responsive adjustments improve usability for smaller screens */
+@media (max-width: 1000px) {
+  .album-layout {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+
+  .left-panel {
+    align-items: center;
+  }
+
+  .artwork-wrapper {
+    margin-left: 0;
+    width: 360px;
+    height: 360px;
+  }
+
+  .vinyl-record {
+    width: 340px;
+    height: 340px;
+    right: -50px;
+  }
+
+  .album-art {
+    width: 300px;
+    height: 300px;
+  }
+
+  .player-bar {
+    position: relative;
+    margin-top: 2rem;
+  }
+}
+
+@keyframes spinVinyl {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin {
+  animation:
+    spinVinyl 1.8s linear infinite,
+    vinylPulse 1s ease-in-out infinite alternate;
+}
+
+#favorite-btn {
+  border: none;
+
+  background: transparent;
+
+  color: var(--accent-color);
+
+  font-size: 1.3rem;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+#favorite-btn:hover {
+  transform: scale(1.2);
+
+  opacity: 0.8;
+}
+
+.favorite-active {
+  color: white;
+}
+
+#playlist-popup {
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.65);
+
+  backdrop-filter: blur(12px);
+
+  display: none;
+
+  justify-content: center;
+  align-items: center;
+
+  z-index: 1000;
+}
+
+.playlist-content {
+  width: 400px;
+
+  background: rgba(20, 20, 30, 0.96);
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  border-radius: 2rem;
+
+  padding: 2rem;
+}
+
+.playlist-content h3 {
+  margin-bottom: 1.5rem;
+}
+
+.popup-track {
+  padding: 1rem;
+
+  border-radius: 1rem;
+
+  margin-top: 0.7rem;
+
+  background: rgba(255,255,255,0.04);
+
+  transition: 0.3s ease;
+}
+
+.popup-track:hover {
+  background: rgba(255,255,255,0.08);
+
+  transform: translateX(6px);
+}
+
+#prev-btn,
+#next-btn,
+#mode-btn,
+#playlist-btn {
+  border: none;
+
+  background: transparent;
+
+  color: white;
+
+  cursor: pointer;
+
+  font-size: 1.1rem;
+
+  transition: 0.3s ease;
+}
+
+#prev-btn:hover,
+#next-btn:hover,
+#mode-btn:hover,
+#playlist-btn:hover {
+  transform: scale(1.15);
+
+  opacity: 0.8;
+}
+
+#volume-control {
+  width: 90px;
+
+  cursor: pointer;
+}
+
+#mute-btn {
+  border: none;
+
+  background: transparent;
+
+  color: white;
+
+  cursor: pointer;
+
+  font-size: 1rem;
+
+  transition: 0.3s ease;
+}
+
+#mute-btn:hover {
+  transform: scale(1.15);
+
+  opacity: 0.8;
+}

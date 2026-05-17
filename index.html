@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Midnight Surface</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <header>
+      <p class="album-label">Interactive Music Album</p>
+      <h1>Midnight Surface</h1>
+      <p class="artist-name">Ambient Electronic Collection</p>
+    </header>
+
+    <main class="container">
+      <!-- The layout was redesigned so the album artwork becomes the emotional
+      focus while the track list behaves more like a modern streaming interface. -->
+
+      <!-- Album artwork source:
+      Photo by Tobias Reich on Unsplash
+      https://unsplash.com/photos/grayscale-photo-of-city-buildings-hhjlQb8KGeE
+
+      Design rationale:
+      This artwork was selected because the foggy monochrome cityscape creates
+      a cinematic and atmospheric mood that matches the ambient electronic
+      feeling of the album tracks. The soft lighting, reflective architecture,
+      and minimal color palette help reinforce the immersive late-night listening
+      experience intended for this interactive music album project.
+
+      The artwork filter effects were adjusted according to different tracks,
+      making the cover art more closely match the emotional atmosphere of
+      each song.
+      -->
+
+      <section class="album-layout">
+
+        <section class="left-panel">
+
+          <div class="artwork-wrapper">
+
+            <div class="vinyl-record" id="vinyl"></div>
+
+            <img
+              id="album-art"
+              class="album-art"
+              src="assets/img1.jpg"
+              alt="Album Artwork"
+            />
+
+          </div>
+
+          <div class="player-bar">
+
+            <button id="prev-btn">⏮</button>
+
+            <button id="play-pause-btn">
+              <img
+                id="play-pause-img"
+                src="https://img.icons8.com/ios-glyphs/30/play--v1.png"
+                alt="Play Button"
+                width="24"
+                height="24"
+              />
+            </button>
+
+            <button id="next-btn">⏭</button>
+
+            <div class="song-info">
+              <p id="track-name">Hes</p>
+              <span id="track-artist">p-hase</span>
+            </div>
+
+            <button id="favorite-btn">♡</button>
+
+            <div class="progress-bar" id="progress-bar">
+              <span id="progress-bar-fill"></span>
+            </div>
+
+            <span id="time-display">0:00</span>
+
+            <input
+              type="range"
+              id="volume-control"
+              min="0"
+              max="1"
+              step="0.01"
+              value="1"
+            />
+            <button id="mute-btn">🔊</button>
+
+            <button id="mode-btn">🔁</button>
+
+            <button id="playlist-btn">☰</button>
+
+          </div>
+        </section>
+
+        <section class="track-panel">
+
+          <h2>Tracks</h2>
+
+          <!-- Smooth transitions were added when switching between tracks
+          to create a calmer and more immersive album experience. -->
+
+          <div
+            class="track active-track"
+            data-src="https://thelongesthumstore.sgp1.cdn.digitaloceanspaces.com/IM-2250/p-hase_Hes.mp3"
+            data-title="Hes"
+            data-art="assets/img1.jpg"
+          >
+            <span>01</span>
+            <p>Hes</p>
+            <span class="track-duration">1:51</span>
+          </div>
+
+          <div
+            class="track"
+            data-src="https://thelongesthumstore.sgp1.cdn.digitaloceanspaces.com/IM-2250/p-hase_Dry-Down-feat-Ben-Snaath.mp3"
+            data-title="Dry Down"
+            data-art="assets/img2.jpg"
+          >
+            <span>02</span>
+            <p>Dry Down</p>
+            <span class="track-duration">1:50</span>
+          </div>
+
+          <div
+            class="track"
+            data-src="https://thelongesthumstore.sgp1.cdn.digitaloceanspaces.com/IM-2250/p-hase_Leapt.mp3"
+            data-title="Leapt"
+            data-art="assets/img3.jpg"
+          >
+            <span>03</span>
+            <p>Leapt</p>
+            <span class="track-duration">1:36</span>
+          </div>
+
+          <div
+            class="track"
+            data-src="https://thelongesthumstore.sgp1.cdn.digitaloceanspaces.com/IM-2250/p-hase_Water-Feature.mp3"
+            data-title="Water Feature"
+            data-art="assets/img4.jpg"
+          >
+            <span>04</span>
+            <p>Water Feature</p>
+            <span class="track-duration">0:55</span>
+          </div>
+
+        </section>
+      </section>
+    </main>
+
+    <audio id="audio-player"></audio>
+
+    <div id="playlist-popup">
+
+      <div class="playlist-content">
+
+        <h3>Current Playlist</h3>
+
+        <div class="popup-track">01 — Hes</div>
+        <div class="popup-track">02 — Dry Down</div>
+        <div class="popup-track">03 — Leapt</div>
+        <div class="popup-track">04 — Water Feature</div>
+
+      </div>
+
+    </div>
+
+  </body>
+</html>
